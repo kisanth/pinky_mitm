@@ -1,0 +1,13 @@
+[Unit]
+Description=mitm service
+After=network.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/bin/mitmdump --listen-port 8088 --showhost --ssl-insecure --set upstream_cert=false -s /var/lib/mitm/pinky.py  &>/dev/null
+Restart=always
+RestartSec=1
+
+[Install]
+WantedBy=multi-user.target
